@@ -12,9 +12,9 @@ import {
 } from '@cinformatique/state';
 import React, { useContext, useRef } from 'react';
 import { useSyncExternalStore } from 'use-sync-external-store/shim';
-import { PauseContext } from './usePauseProvider';
 import { reactGlobals } from './react-globals';
 import type { UseSelectorOptions } from './reactInterfaces';
+import { PauseContext } from './usePauseProvider';
 
 interface SelectorFunctions<T> {
     subscribe: (onStoreChange: () => void) => () => void;
@@ -29,15 +29,33 @@ function createSelectorFunctions<T>(
     let version = 0;
     let notify: () => void;
     let dispose: (() => void) | undefined;
-    let resubscribe: (() => void) | undefined;
+    let resubscribe: (() => () => void) | undefined;
     let _selector: Selector<T>;
     let prev: T;
 
     let pendingUpdate: any | undefined = undefined;
 
+    const run = () => {
+        // Dispose if already listening
+        dispose?.();
+
+        const {
+            value,
+            dispose: _dispose,
+            resubscribe: _resubscribe,
+        } = trackSelector(_selector, _update, undefined, undefined, /*createResubscribe*/ true);
+
+        dispose = _dispose;
+        resubscribe = _resubscribe;
+
+        return value;
+    };
+
     const _update = ({ value }: { value: ListenerParams['value'] }) => {
         if (isPaused$?.peek()) {
-            if (pendingUpdate === undefined) {
+            const next = pendingUpdate;
+            pendingUpdate = value;
+            if (next === undefined) {
                 when(
                     () => !isPaused$.get(),
                     () => {
@@ -47,13 +65,12 @@ function createSelectorFunctions<T>(
                     },
                 );
             }
-            pendingUpdate = value;
         } else {
             // If skipCheck then don't need to re-run selector
             let changed = options?.skipCheck;
             if (!changed) {
-                // Re-run the selector to get the new value
-                const newValue = computeSelector(_selector);
+                const newValue = run();
+
                 // If newValue is different than previous value then it's changed.
                 // Also if the selector returns an observable directly then its value will be the same as
                 // the value from the listener, and that should always re-render.
@@ -78,7 +95,7 @@ function createSelectorFunctions<T>(
                 !dispose &&
                 resubscribe
             ) {
-                resubscribe();
+                dispose = resubscribe();
             }
 
             return () => {
@@ -90,40 +107,25 @@ function createSelectorFunctions<T>(
         run: (selector: Selector<T>) => {
             // Update the cached selector
             _selector = selector;
-            // Dispose if already listening
-            dispose?.();
 
-            const {
-                value,
-                dispose: _dispose,
-                resubscribe: _resubscribe,
-            } = trackSelector(selector, _update, undefined, undefined, /*createResubscribe*/ true);
-
-            dispose = _dispose;
-            resubscribe = _resubscribe;
-
-            prev = value;
-
-            return value;
+            return (prev = run());
         },
     };
 }
 
 export function useSelector<T>(selector: Selector<T>, options?: UseSelectorOptions): T {
-    // Short-circuit to skip creating the hook if the parent component is an observer
-    if (reactGlobals.inObserver) {
+    // Short-circuit to skip creating the hook if selector is an observable
+    // and running in an observer. If selector is a function it needs to run in its own context.
+    if (reactGlobals.inObserver && isObservable(selector)) {
         return computeSelector(selector);
     }
 
     let value;
 
     try {
-        const ref = useRef<SelectorFunctions<T>>();
         const isPaused$ = useContext(PauseContext);
-        if (!ref.current) {
-            ref.current = createSelectorFunctions<T>(options, isPaused$);
-        }
-        const { subscribe, getVersion, run } = ref.current;
+        const selectorFn = useMemo(() => createSelectorFunctions<T>(options, isPaused$), []);
+        const { subscribe, getVersion, run } = selectorFn;
 
         // Run the selector
         // Note: The selector needs to run on every render because it may have different results

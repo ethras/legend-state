@@ -15,6 +15,7 @@ import { useObserve } from '../src/react/useObserve';
 import { useObserveEffect } from '../src/react/useObserveEffect';
 import { useSelector } from '../src/react/useSelector';
 import { useObservableState } from '../src/react/useObservableState';
+import { getNode } from '../src/globals';
 
 type TestObject = { id: string; label: string };
 
@@ -191,6 +192,25 @@ describe('useSelector', () => {
         expect(num).toEqual(5);
         expect(numSelects).toEqual(11);
     });
+    test('useSelector runs once in non-strict mode', () => {
+        const obs = observable('hi');
+
+        let num = 0;
+        function Test() {
+            const value = useSelector(() => {
+                num++;
+                return obs.get() + ' there';
+            });
+            return createElement('div', undefined, value);
+        }
+        render(createElement(Test));
+
+        expect(num).toEqual(1);
+        act(() => {
+            obs.set('hello');
+        });
+        expect(num).toEqual(3);
+    });
     test('useSelector runs twice in strict mode', () => {
         const obs = observable('hi');
 
@@ -317,6 +337,109 @@ describe('useSelector', () => {
         });
         expect(num).toEqual(4);
         expect(num2).toEqual(2);
+    });
+    test('useSelector listener count strict', () => {
+        const obs = observable('hi');
+        let num = 0;
+        const numListeners = () => getNode(obs).listeners?.size;
+
+        function Test() {
+            const value = useSelector(() => {
+                return obs.get() + ' there';
+            });
+            num++;
+            return createElement('div', undefined, value);
+        }
+        function App() {
+            return createElement(StrictMode, undefined, createElement(Test));
+        }
+        render(createElement(App));
+
+        expect(numListeners()).toEqual(2);
+        expect(num).toEqual(2);
+        act(() => {
+            obs.set('hello');
+        });
+        expect(numListeners()).toEqual(2);
+        expect(num).toEqual(4);
+        act(() => {
+            obs.set('z');
+        });
+        expect(numListeners()).toEqual(2);
+        expect(num).toEqual(6);
+        act(() => {
+            obs.set('q');
+        });
+        expect(numListeners()).toEqual(2);
+        expect(num).toEqual(8);
+    });
+    test('useSelector listener count', () => {
+        const obs = observable('hi');
+        let num = 0;
+        const numListeners = () => getNode(obs).listeners?.size;
+
+        function Test() {
+            const value = useSelector(() => {
+                return obs.get() + ' there';
+            });
+            num++;
+            return createElement('div', undefined, value);
+        }
+        function App() {
+            return createElement(Test);
+        }
+        render(createElement(App));
+
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(1);
+        act(() => {
+            obs.set('hello');
+        });
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(2);
+        act(() => {
+            obs.set('z');
+        });
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(3);
+        act(() => {
+            obs.set('q');
+        });
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(4);
+    });
+    test('useSelector for pure proxy use', () => {
+        const obs = observable('hi');
+        let num = 0;
+        const numListeners = () => getNode(obs).listeners?.size;
+
+        function Test() {
+            const value = useSelector(obs);
+            num++;
+            return createElement('div', undefined, value);
+        }
+        function App() {
+            return createElement(Test);
+        }
+        render(createElement(App));
+
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(1);
+        act(() => {
+            obs.set('hello');
+        });
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(2);
+        act(() => {
+            obs.set('z');
+        });
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(3);
+        act(() => {
+            obs.set('q');
+        });
+        expect(numListeners()).toEqual(1);
+        expect(num).toEqual(4);
     });
 });
 
@@ -524,6 +647,55 @@ describe('Show', () => {
         items = container.querySelectorAll('span');
         expect(items.length).toEqual(1);
         expect(items[0].textContent).toEqual('test');
+    });
+    test('Show if changing does not re-render', async () => {
+        let numRenders = 0;
+        const obs = observable({
+            value: '',
+        });
+        function Child() {
+            numRenders++;
+            return createElement('span', undefined, 'hi');
+        }
+        function Test() {
+            return createElement(
+                'div',
+                undefined,
+                // @ts-expect-error Not sure why it wants children in props
+                createElement(Show, { if: () => !!obs.value.get() }, () => createElement(Child)),
+            );
+        }
+        render(createElement(Test));
+
+        act(() => {
+            obs.value.set('test');
+        });
+
+        expect(numRenders).toEqual(1);
+
+        act(() => {
+            obs.value.set('test2');
+        });
+
+        expect(numRenders).toEqual(1);
+
+        act(() => {
+            obs.value.set(undefined);
+        });
+
+        expect(numRenders).toEqual(1);
+
+        act(() => {
+            obs.value.set('test');
+        });
+
+        expect(numRenders).toEqual(2);
+
+        act(() => {
+            obs.value.set('test2');
+        });
+
+        expect(numRenders).toEqual(2);
     });
 });
 
@@ -733,7 +905,6 @@ describe('observer', () => {
 
         expect(num).toEqual(2);
     });
-
     test('observer with useSelector inside', () => {
         let num = 0;
         const obs$ = observable(0);
@@ -756,6 +927,40 @@ describe('observer', () => {
         });
 
         expect(num).toEqual(2);
+    });
+    test('useSelector renders once when it returns the same thing inside an observer', () => {
+        const obs = observable('hi');
+        let num = 0;
+        let num2 = 0;
+        let lastValue = false;
+
+        const Test = observer(function Test() {
+            num2++;
+            lastValue = useSelector(() => {
+                num++;
+                return obs.get() === 'hi';
+            });
+
+            return createElement('div', undefined);
+        });
+        function App() {
+            return createElement(Test);
+        }
+        render(createElement(App));
+
+        expect(lastValue).toEqual(true);
+        expect(num).toEqual(1);
+        expect(num2).toEqual(1);
+        act(() => {
+            obs.set('hello');
+        });
+        expect(num).toEqual(3);
+        expect(num2).toEqual(2);
+        act(() => {
+            obs.set('hello2');
+        });
+        expect(num).toEqual(4);
+        expect(num2).toEqual(2);
     });
 });
 describe('useObservableState', () => {
