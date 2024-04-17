@@ -1,4 +1,4 @@
-import { isFunction, Observable, observable } from '@legendapp/state';
+import { isFunction, Observable, observable } from '@cinformatique/state';
 import React, { MutableRefObject, Reducer, ReducerState } from 'react';
 
 function overrideHooks<TRet>(refObs: MutableRefObject<Observable<TRet> | undefined>) {

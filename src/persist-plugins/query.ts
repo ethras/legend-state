@@ -3,7 +3,7 @@ import {
     isFunction,
     observe,
     type ObservablePersistRemoteSetParams,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 import {
     InfiniteQueryObserver,
     MutationObserver,

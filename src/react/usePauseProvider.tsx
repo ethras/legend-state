@@ -1,4 +1,4 @@
-import { Observable, observable } from '@legendapp/state';
+import { Observable, observable } from '@cinformatique/state';
 import { ReactNode, createContext, createElement, useState } from 'react';
 
 export const PauseContext = createContext<Observable<boolean>>(null as any);

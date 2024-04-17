@@ -1,4 +1,4 @@
-import { Selector, when, whenReady } from '@legendapp/state';
+import { Selector, when, whenReady } from '@cinformatique/state';
 import { useMemo } from 'react';
 
 export function useWhen<T>(predicate: Selector<T>, effect: (value: T) => any | (() => any)) {

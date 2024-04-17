@@ -1,4 +1,4 @@
-import type { NodeValue } from '@legendapp/state';
+import type { NodeValue } from '@cinformatique/state';
 import {
     extraPrimitiveActivators,
     extraPrimitiveProps,
@@ -6,8 +6,8 @@ import {
     isObservable,
     ObservablePrimitiveClass,
     ObservableReadable,
-} from '@legendapp/state';
-import { useSelector } from '@legendapp/state/react';
+} from '@cinformatique/state';
+import { useSelector } from '@cinformatique/state/react';
 import { createElement, memo } from 'react';
 
 // V3TODO: Remove this file

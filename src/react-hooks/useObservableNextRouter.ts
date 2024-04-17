@@ -1,4 +1,4 @@
-import { isEmpty, observable, Observable, setSilently } from '@legendapp/state';
+import { isEmpty, observable, Observable, setSilently } from '@cinformatique/state';
 import Router, { NextRouter, useRouter } from 'next/router';
 
 type ParsedUrlQuery = { [key: string]: string | string[] | undefined };

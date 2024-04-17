@@ -1,5 +1,5 @@
-import { Observable, PersistOptions, WithPersistState } from '@legendapp/state';
-import { persistObservable } from '@legendapp/state/persist';
+import { Observable, PersistOptions, WithPersistState } from '@cinformatique/state';
+import { persistObservable } from '@cinformatique/state/persist';
 import { useMemo } from 'react';
 import type { WithoutState } from '../persist/persistObservable';
 

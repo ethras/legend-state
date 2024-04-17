@@ -705,7 +705,7 @@ This is a big one with many breaking (but good) changes, so see https://legendap
 - Breaking: Removed `onChangeShallow`, `onTrue`, `onEquals`, and `onHasValue` in favor of the new `effect` and `when` which automatically track any accessed observables.
 - Breaking: Renamed primitive observables' wrapping value from `current` to `value`.
 - Breaking: Renamed `observableComputed` to `computed` and `observableEvent` to `event`.
-- Breaking: Renamed the bindable components from `LS` to `Bindable` and they now export from '@legendapp/state/react-components' or '@legendapp/state/react-native-components'
+- Breaking: Renamed the bindable components from `LS` to `Bindable` and they now export from'@cinformatique/state/react-components' or'@cinformatique/state/react-native-components'
 - Feat: Observable primitives can be rendered directly in React
 - Feat: Added `observe`, which can run arbitrary code while tracking all accessed observables.
 - Feat: Added `when`, which can run functions when the predicate returns a truthy value.

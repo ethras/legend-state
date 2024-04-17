@@ -19,7 +19,7 @@ export default function () {
             },
             ImportDeclaration: {
                 enter(path: { node: any; replaceWith: (param: any) => any }) {
-                    if (path.node.source.value === '@legendapp/state/react') {
+                    if (path.node.source.value === '@cinformatique/state/react') {
                         const specifiers = path.node.specifiers;
                         for (let i = 0; i < specifiers.length; i++) {
                             const s = specifiers[i].imported.name;

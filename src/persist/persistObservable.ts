@@ -19,7 +19,7 @@ import type {
     Primitive,
     TypeAtPath,
     WithPersistState,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 import {
     batch,
     constructObjectWithPath,
@@ -37,7 +37,7 @@ import {
     setAtPath,
     setInObservableAtPath,
     when,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 import { observablePersistConfiguration } from './configureObservablePersistence';
 import { invertFieldMap, transformObject, transformObjectWithPath, transformPath } from './fieldTransformer';
 import { observablePersistRemoteFunctionsAdapter } from './observablePersistRemoteFunctionsAdapter';

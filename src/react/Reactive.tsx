@@ -1,4 +1,4 @@
-import { isEmpty, isFunction } from '@legendapp/state';
+import { isEmpty, isFunction } from '@cinformatique/state';
 import { ComponentClass, FC, createElement, forwardRef } from 'react';
 import { BindKeys } from './reactInterfaces';
 import { reactive } from './reactive-observer';

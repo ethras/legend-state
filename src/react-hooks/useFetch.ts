@@ -1,4 +1,4 @@
-import { observableFetch } from '@legendapp/state/helpers/fetch';
+import { observableFetch } from '@cinformatique/state/helpers/fetch';
 import { useMemo } from 'react';
 
 export function useFetch<T>(

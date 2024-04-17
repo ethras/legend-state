@@ -67,8 +67,8 @@ Legend-State includes a powerful persistence plugin system for local caching and
 Local persistence plugins for the browser and React Native are included, and a remote sync plugin for Firebase will be ready soon.
 
 ```js
-import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
-import { persistObservable } from '@legendapp/state/persist'
+import { ObservablePersistLocalStorage } from'@cinformatique/state/persist-plugins/local-storage'
+import { persistObservable } from'@cinformatique/state/persist'
 
 const state$ = observable({ store: { bigObject: { ... } } })
 

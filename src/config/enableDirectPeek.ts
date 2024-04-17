@@ -1,4 +1,4 @@
-import { configureLegendState, internal } from '@legendapp/state';
+import { configureLegendState, internal } from '@cinformatique/state';
 
 export function enableDirectPeek() {
     configureLegendState({
@@ -18,9 +18,9 @@ export function enableDirectPeek() {
 // Types:
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { ObservableBaseFns } from '@legendapp/state';
+import type { ObservableBaseFns } from '@cinformatique/state';
 
-declare module '@legendapp/state' {
+declare module '@cinformatique/state' {
     interface ObservableBaseFns<T> {
         set _(value: T | null | undefined);
         get _(): T;

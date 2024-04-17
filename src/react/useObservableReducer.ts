@@ -1,5 +1,5 @@
-import type { Observable } from '@legendapp/state';
-import { isFunction } from '@legendapp/state';
+import type { Observable } from '@cinformatique/state';
+import { isFunction } from '@cinformatique/state';
 import type {
     Dispatch,
     DispatchWithoutAction,

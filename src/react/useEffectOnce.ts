@@ -1,4 +1,4 @@
-import { isFunction } from '@legendapp/state';
+import { isFunction } from '@cinformatique/state';
 import { useEffect, useRef } from 'react';
 
 export const useEffectOnce = (effect: () => void | (() => void)) => {

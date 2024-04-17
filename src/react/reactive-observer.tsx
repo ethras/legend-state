@@ -1,4 +1,4 @@
-import { isFunction, isObservable, Selector } from '@legendapp/state';
+import { isFunction, isObservable, Selector } from '@cinformatique/state';
 import { ChangeEvent, FC, forwardRef, memo, useCallback } from 'react';
 import { reactGlobals } from './react-globals';
 import type { BindKeys } from './reactInterfaces';

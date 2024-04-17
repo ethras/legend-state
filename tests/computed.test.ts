@@ -10,7 +10,7 @@ import {
     observe,
     proxy,
     TrackingType,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 
 function promiseTimeout(time?: number) {
     return new Promise((resolve) => setTimeout(resolve, time || 0));

@@ -5,8 +5,8 @@ import {
     tracking,
     type TrackingType,
     isObject,
-} from '@legendapp/state';
-import { UseSelectorOptions, useSelector } from '@legendapp/state/react';
+} from '@cinformatique/state';
+import { UseSelectorOptions, useSelector } from '@cinformatique/state/react';
 import { createContext, useContext } from 'react';
 // @ts-expect-error Internals
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED as ReactInternals } from 'react';
@@ -61,9 +61,9 @@ export function enableReactTracking({ auto, warnUnobserved }: ReactTrackingOptio
 // Types:
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { GetOptions, ObservableBaseFns } from '@legendapp/state';
+import type { GetOptions, ObservableBaseFns } from '@cinformatique/state';
 
-declare module '@legendapp/state' {
+declare module '@cinformatique/state' {
     interface ObservableBaseFns<T> {
         get(options?: TrackingType | (GetOptions & { suspense?: boolean })): T;
     }

@@ -3,7 +3,7 @@
 // 2. Return an observable that subscribes to the query observer
 // 3. If there is a mutator observe the observable for changes and call mutate
 
-import { observable, observe, type ObservableObject } from '@legendapp/state';
+import { observable, observe, type ObservableObject } from '@cinformatique/state';
 import {
     DefaultedQueryObserverOptions,
     MutationObserver,

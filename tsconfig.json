@@ -52,16 +52,16 @@
             "firebase/database": [
                 "node_modules/firebase/database"
             ],
-            "@legendapp/state": [
+            "@cinformatique/state": [
                 "index"
             ],
-            "@legendapp/state/persist": [
+            "@cinformatique/state/persist": [
                 "persist"
             ],
-            "@legendapp/state/react": [
+            "@cinformatique/state/react": [
                 "react"
             ],
-            "@legendapp/state/helpers/fetch": [
+            "@cinformatique/state/helpers/fetch": [
                 "src/helpers/fetch"
             ],
         },

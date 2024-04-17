@@ -1,4 +1,4 @@
-import { symbolDelete } from '@legendapp/state';
+import { symbolDelete } from '@cinformatique/state';
 import { isObservable, isObservableValueReady, mergeIntoObservable } from '../src/helpers';
 import { observable } from '../src/observable';
 

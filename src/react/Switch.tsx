@@ -1,4 +1,4 @@
-import type { Selector } from '@legendapp/state';
+import type { Selector } from '@cinformatique/state';
 import { ReactElement, ReactNode } from 'react';
 import { useSelector } from './useSelector';
 

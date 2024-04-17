@@ -5,8 +5,8 @@ import type {
     ObservablePersistLocal,
     PersistMetadata,
     PersistOptionsLocal,
-} from '@legendapp/state';
-import { isPrimitive, isPromise, observable, setAtPath, when } from '@legendapp/state';
+} from '@cinformatique/state';
+import { isPrimitive, isPromise, observable, setAtPath, when } from '@cinformatique/state';
 
 const MetadataSuffix = '__legend_metadata';
 

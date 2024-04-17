@@ -1,5 +1,5 @@
-import type { Selector } from '@legendapp/state';
-import { computeSelector, isFunction, isObservableValueReady } from '@legendapp/state';
+import type { Selector } from '@cinformatique/state';
+import { computeSelector, isFunction, isObservableValueReady } from '@cinformatique/state';
 import { FC, ReactElement, ReactNode, createElement } from 'react';
 import { useSelector } from './useSelector';
 

@@ -5,7 +5,7 @@ import {
     internal,
     mergeIntoObservable,
     observable,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 
 // This type is purely for documentation.
 type TimestampAsString = string;

@@ -1,4 +1,4 @@
-import { NodeValue, optimized, tracking, TrackingNode } from '@legendapp/state';
+import { NodeValue, optimized, tracking, TrackingNode } from '@cinformatique/state';
 import { getNodePath } from './traceHelpers';
 
 export function useVerifyNotTracking(this: any, name?: string) {

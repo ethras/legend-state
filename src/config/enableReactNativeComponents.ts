@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import type { Observable } from '@legendapp/state';
-import { FCReactive, FCReactiveObject, configureReactive, useSelector } from '@legendapp/state/react';
+import type { Observable } from '@cinformatique/state';
+import { FCReactive, FCReactiveObject, configureReactive, useSelector } from '@cinformatique/state/react';
 import {
     ActivityIndicator,
     ActivityIndicatorProps,
@@ -82,9 +82,9 @@ export function enableReactNativeComponents() {
 // Types:
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { IReactive } from '@legendapp/state/react';
+import type { IReactive } from '@cinformatique/state/react';
 
-declare module '@legendapp/state/react' {
+declare module '@cinformatique/state/react' {
     interface IReactive extends FCReactiveObject<JSX.IntrinsicElements> {
         ActivityIndicator: FCReactive<ActivityIndicator, ActivityIndicatorProps>;
         Button: FCReactive<Button, ButtonProps>;

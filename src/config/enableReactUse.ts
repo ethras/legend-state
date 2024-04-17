@@ -1,5 +1,5 @@
-import { configureLegendState, internal, NodeValue } from '@legendapp/state';
-import { useSelector, UseSelectorOptions } from '@legendapp/state/react';
+import { configureLegendState, internal, NodeValue } from '@cinformatique/state';
+import { useSelector, UseSelectorOptions } from '@cinformatique/state/react';
 
 export function enableReactUse() {
     configureLegendState({
@@ -12,9 +12,9 @@ export function enableReactUse() {
 // Types:
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { ObservableBaseFns } from '@legendapp/state';
+import type { ObservableBaseFns } from '@cinformatique/state';
 
-declare module '@legendapp/state' {
+declare module '@cinformatique/state' {
     interface ObservableBaseFns<T> {
         use(options?: UseSelectorOptions): T;
     }

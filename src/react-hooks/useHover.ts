@@ -1,5 +1,5 @@
-import type { Observable } from '@legendapp/state';
-import { useObservable } from '@legendapp/state/react';
+import type { Observable } from '@cinformatique/state';
+import { useObservable } from '@cinformatique/state/react';
 import { useEffect } from 'react';
 
 export function useHover<T extends HTMLElement>(ref: React.MutableRefObject<T>): Observable<boolean> {

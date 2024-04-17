@@ -1,4 +1,4 @@
-import { observable } from '@legendapp/state';
+import { observable } from '@cinformatique/state';
 
 export function observableFetch<T>(
     input: RequestInfo | URL,

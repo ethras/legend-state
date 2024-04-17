@@ -1,5 +1,5 @@
-import type { Change, ObservablePersistLocal, PersistMetadata } from '@legendapp/state';
-import { setAtPath, internal } from '@legendapp/state';
+import type { Change, ObservablePersistLocal, PersistMetadata } from '@cinformatique/state';
+import { setAtPath, internal } from '@cinformatique/state';
 
 const MetadataSuffix = '__m';
 

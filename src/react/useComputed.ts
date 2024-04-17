@@ -5,7 +5,7 @@ import {
     ObservableComputed,
     ObservableComputedTwoWay,
     ObservableReadable,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 import { useMemo, useRef } from 'react';
 
 export function useComputed<T>(compute: () => T | Promise<T>): ObservableComputed<T>;

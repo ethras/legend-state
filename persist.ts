@@ -1,7 +1,7 @@
 export { configureObservablePersistence } from './src/persist/configureObservablePersistence';
 export { invertFieldMap, transformObject, transformPath } from './src/persist/fieldTransformer';
 export { mapPersistences, onChangeRemote, persistObservable, persistState } from './src/persist/persistObservable';
-import { internal as internalState } from '@legendapp/state';
+import { internal as internalState } from '@cinformatique/state';
 
 export function isInRemoteChange() {
     return internalState.globalState.isLoadingRemote;

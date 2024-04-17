@@ -1,4 +1,4 @@
-import { observable, Observable } from '@legendapp/state';
+import { observable, Observable } from '@cinformatique/state';
 
 interface Options {
     setter: 'pushState' | 'replaceState' | 'hash';

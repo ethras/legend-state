@@ -1,5 +1,5 @@
-import type { ObservableObject } from '@legendapp/state';
-import { useObservable } from '@legendapp/state/react';
+import type { ObservableObject } from '@cinformatique/state';
+import { useObservable } from '@cinformatique/state/react';
 import { RefObject, useLayoutEffect } from 'react';
 
 function getSize(el: HTMLElement): { width: number; height: number } | undefined {

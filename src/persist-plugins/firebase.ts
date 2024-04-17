@@ -20,8 +20,8 @@ import {
     setAtPath,
     when,
     whenReady,
-} from '@legendapp/state';
-import { internal as internalPersist, transformObject, transformPath } from '@legendapp/state/persist';
+} from '@cinformatique/state';
+import { internal as internalPersist, transformObject, transformPath } from '@cinformatique/state/persist';
 import { getAuth, type User } from 'firebase/auth';
 import type { DataSnapshot } from 'firebase/database';
 import {

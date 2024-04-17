@@ -1,4 +1,4 @@
-import { observable } from '@legendapp/state';
+import { observable } from '@cinformatique/state';
 
 const MSPerMinute = 60000;
 

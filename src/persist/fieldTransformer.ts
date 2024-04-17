@@ -8,7 +8,7 @@ import {
     symbolDelete,
     TypeAtPath,
     internal,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 
 const { initializePathType } = internal;
 

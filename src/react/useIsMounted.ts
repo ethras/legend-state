@@ -1,4 +1,4 @@
-import type { Observable } from '@legendapp/state';
+import type { Observable } from '@cinformatique/state';
 import { useObservable } from './useObservable';
 import { useEffectOnce } from './useEffectOnce';
 

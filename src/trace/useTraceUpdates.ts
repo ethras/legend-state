@@ -1,4 +1,4 @@
-import { ListenerParams, tracking } from '@legendapp/state';
+import { ListenerParams, tracking } from '@cinformatique/state';
 
 export function useTraceUpdates(name?: string) {
     if (process.env.NODE_ENV === 'development' && tracking.current) {

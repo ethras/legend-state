@@ -1,4 +1,4 @@
-import { configureLegendState, internal, type NodeValue } from '@legendapp/state';
+import { configureLegendState, internal, type NodeValue } from '@cinformatique/state';
 
 export function enableDirectAccess() {
     const { observableFns, set } = internal;
@@ -22,9 +22,9 @@ export function enableDirectAccess() {
 // Types:
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { ObservableBaseFns } from '@legendapp/state';
+import type { ObservableBaseFns } from '@cinformatique/state';
 
-declare module '@legendapp/state' {
+declare module '@cinformatique/state' {
     interface ObservableBaseFns<T> {
         set $(value: T | null | undefined);
         get $(): T;

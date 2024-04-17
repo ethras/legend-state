@@ -5,7 +5,7 @@ import {
     ObserveEvent,
     ObserveEventCallback,
     Selector,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 import { useRef } from 'react';
 import type { ObserveOptions } from '../observe';
 import { useEffectOnce } from './useEffectOnce';

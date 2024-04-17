@@ -1,4 +1,4 @@
-import { isFunction, observable, type Observable } from '@legendapp/state';
+import { isFunction, observable, type Observable } from '@cinformatique/state';
 import { useMemo } from 'react';
 import { useSelector } from './useSelector';
 

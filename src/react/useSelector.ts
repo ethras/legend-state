@@ -9,7 +9,7 @@ import {
     trackSelector,
     when,
     WithState,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 import React, { useContext, useRef } from 'react';
 import { useSyncExternalStore } from 'use-sync-external-store/shim';
 import { PauseContext } from './usePauseProvider';

@@ -2,7 +2,7 @@ import type {
     ObservablePersistRemoteClass,
     ObservablePersistRemoteFunctions,
     ObservablePersistRemoteGetParams,
-} from '@legendapp/state';
+} from '@cinformatique/state';
 
 export function observablePersistRemoteFunctionsAdapter<T = {}>({
     get,
